@@ -1,7 +1,7 @@
-.PHONY: install prepare configure build test run callgrind all
-install:
-	apt install libsdl2-dev
-prepare: install
+.PHONY: install_dependencies prepare configure build test run callgrind all
+install_dependencies:
+	apt install_dependencies libsdl2-dev
+prepare: install_dependencies
 	rm -rf build
 	mkdir build
 configure: prepare
@@ -14,4 +14,4 @@ run:
 	cd build && ./exe
 callgrind:
 	cd build && valgrind --tool=callgrind ./exe && kcachegrin callgrind.out.*
-all: install prepare configure build test run
+all: install_dependencies prepare configure build test run
